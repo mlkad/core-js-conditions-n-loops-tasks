@@ -137,7 +137,6 @@ function convertToRomanNumerals(num) {
 
   return romanNumerals;
 }
-
 /**
  * Converts a number to a string, replacing digits with words.
  * In this task, the use of methods of the String and Array classes is not allowed.
