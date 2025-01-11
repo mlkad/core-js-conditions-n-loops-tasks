@@ -137,6 +137,7 @@ function convertToRomanNumerals(num) {
 
   return romanNumerals;
 }
+
 /**
  * Converts a number to a string, replacing digits with words.
  * In this task, the use of methods of the String and Array classes is not allowed.
@@ -152,8 +153,55 @@ function convertToRomanNumerals(num) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  const digits = [
+    'zero',
+    'one',
+    'two',
+    'three',
+    'four',
+    'five',
+    'six',
+    'seven',
+    'eight',
+    'nine',
+  ];
+  let result = '';
+  let isNegative = false;
+  let isDecimal = false;
+
+  for (let i = 0; i < numberStr.length; i += 1) {
+    const char = numberStr[i];
+
+    switch (char) {
+      case '-':
+        isNegative = true;
+        break;
+      case '.':
+      case ',':
+        isDecimal = true;
+        result += ' point';
+        break;
+      default:
+        if (char >= '0' && char <= '9') {
+          if (isDecimal) {
+            result += ` ${digits[char]}`;
+          } else {
+            if (result !== '' && !isDecimal) {
+              result += ' ';
+            }
+            result += digits[char];
+          }
+        }
+        break;
+    }
+  }
+
+  if (isNegative) {
+    result = `minus ${result}`;
+  }
+
+  return result;
 }
 
 /**
